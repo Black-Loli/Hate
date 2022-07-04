@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hate</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+</head>
+<body id="body" class="menu">
+    <div id="modal">
+        <p class="question"> Какой текст будет в центре? </p>
+        <textarea id="text" name="message"></textarea>
+        <button id="button"> Отправить</button>
+    </div>
+    <p id="title"></p>
+</body>
+<script src="jquery.min.js"></script>
+<script>
+    function title() {
+        let  title = document.getElementById("text").value;
+        document.getElementById("title").innerHTML = title;
+    }
+
+    document.getElementById("button").onclick = function () {
+        title();
+        generateText(1);
+        document.getElementById("modal").style.display="none";
+        document.getElementById("body").classList.remove("menu");
+        document.getElementById("body").classList.add("main");
+    }
+
+    function generateText(amount) {
+        for (let i = 0; i < amount; i++) {
+            let text = $(`<p id="title"></p>`);
+            $('.main').append(text)
+        }
+    }
+</script>
+</html>

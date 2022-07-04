@@ -1,0 +1,65 @@
+body{
+    font-family: 'Comic Neue', cursive;
+}
+
+.menu{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background: antiquewhite;
+}
+
+.main{
+    margin: 0;
+    background-image: url("hate.png");
+    background-repeat: repeat;
+    background-size: 5%;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+    background: #d5abff;
+    box-shadow: 10px 10px 10px 10px rgba(176, 176, 176, 0.5);
+}
+
+button{
+    font-family: 'Comic Neue', cursive;
+    width: 26%;
+    height: 30px;
+    border-radius: 10px;
+    border: 0;
+    margin: 20px 0;
+    background: antiquewhite;
+    font-size: 15px;
+    box-shadow: 5px 5px 5px 10px rgba(176, 176, 176, 0.5);
+}
+
+textarea{
+    width: 90%;
+    margin: 20px 0;
+}
+
+.question{
+    font-size: 25px;
+}
+
+#title{
+    font-size: 70px;
+    font-weight: bold;
+    text-transform: uppercase;
+}

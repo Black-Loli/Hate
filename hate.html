@@ -9,31 +9,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
 </head>
 <body id="body" class="menu">
-    <div id="modal">
-        <p class="question"> Что Вы ненавидете? </p>
-        <textarea id="text" name="message"></textarea>
-        <button id="button"> Отправить</button>
-    </div>
+<div id="modal">
+    <p class="question"> Что Вы ненавидете? </p>
+    <textarea id="text" name="message"></textarea>
+    <button id="button"> Отправить</button>
+</div>
 </body>
 <script src="jquery.min.js"></script>
 <script>
+    let hate = "";
+
     function title() {
-        let  title = document.getElementById("text").value;
-        document.getElementById("title").innerHTML = title;
+        $('#title').innerHTML = hate;
     }
 
-    document.getElementById("button").onclick = function () {
-        title();
+    $('#button').onclick = function () {
+        $('#modal').style.display="none";
+        let  body = $('#body').value;
+        body.removeClass("menu");
+        body.addClass("main");
+        hate = $('#text').value;
+        console.log(hate);
         generateText(1);
-        document.getElementById("modal").style.display="none";
-        document.getElementById("body").classList.remove("menu");
-        document.getElementById("body").classList.add("main");
+        title();
     }
 
     function generateText(amount) {
         for (let i = 0; i < amount; i++) {
-            let text = $(`<p id="title"></p>`);
-            $('.main').append(text)
+            let text = $(`<p id="title"></p>`)[0];
+            $('.main')[0].append(text);
         }
     }
 </script>

@@ -10,35 +10,83 @@
 </head>
 <body id="body" class="menu">
 <div id="modal">
-    <p class="question"> Что Вы ненавидете? </p>
+    <label for="text">Перед</label>
     <textarea id="text" name="message"></textarea>
+    <label for="textBackground">Фон</label>
+    <textarea id="textBackground" name="message"></textarea>
     <button id="button"> Отправить</button>
 </div>
+
 </body>
 <script src="jquery.min.js"></script>
 <script>
-    let hate = "";
+    var hateText = "";
+    var textBackground = "";
 
-    function title() {
-        $('#title').innerHTML = hate;
+    $('#button')[0].onclick = function () {
+        hateText = $('#text')[0].value;
+        textBackground = $('#textBackground')[0].value;
+        hideBlock('#modal');
+        changeClass('#body', 'menu', 'svgBody');
+        addSVG('.svgBody');
+        generateBackground(textBackground, 'svg');
+        addTitle();
     }
 
-    $('#button').onclick = function () {
-        $('#modal').style.display="none";
-        let  body = $('#body').value;
-        body.removeClass("menu");
-        body.addClass("main");
-        hate = $('#text').value;
-        console.log(hate);
-        generateText(1);
-        title();
+    function addTitle() {
+        generateTextField(1);
+        $('#title')[0].innerHTML = hateText;
     }
 
-    function generateText(amount) {
-        for (let i = 0; i < amount; i++) {
-            let text = $(`<p id="title"></p>`)[0];
-            $('.main')[0].append(text);
+    function generateTextField(amount) {
+        var text = $('<p id="title"></p>')[0];
+        for (let i = 0; i < amount; i++)
+            $('.svgBody')[0].append(text);
+    }
+
+    function countWidthText(text) {
+        var widthText = 0
+        text.split('').forEach(element => {
+            if (element.toUpperCase()==element){
+                widthText += 17;
+            } else {
+                widthText += 12;
+            }
+        });
+        return widthText;
+    }
+
+    function generateBackground(text, href) {
+        var widthStep = countWidthText(text);
+        var heightStep = 20;
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var max = 360;
+        for (let h = heightStep; h < height;){
+            for (let w = 0; w < width;){
+                var x = w;
+                var y = h;
+                var rotate = `${Math.random() * max} ${x + widthStep/2} ${y + heightStep/2}`;
+                var textTag = `<text x="${x}" y="${y}" class="svgText" transform="rotate(0)">${text}</text>`;
+                $(href)[0].innerHTML += textTag;
+
+                w += widthStep;
+            }
+            h += heightStep;
         }
+    }
+
+    function hideBlock(href) {
+        $(href)[0].style.display='none';
+    }
+
+    function changeClass(href, classRemove, classAdd) {
+        $(href)[0].classList.remove(classRemove);
+        $(href)[0].classList.add(classAdd);
+    }
+
+    function addSVG(href) {
+        $(href)[0].append($('<svg xmlns="http://www.w3.org/2000/svg"></svg>')[0]);
     }
 </script>
 </html>
